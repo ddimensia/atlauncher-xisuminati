@@ -1,23 +1,23 @@
 #!/bin/bash
 
-if [ -n -e config ];
+if [ ! -e config ]; then
   ln -s /opt/minecraft/config config
 fi
 
-if [ -n -e mods ];
+if [ ! -e mods ]; then
   ln -s /opt/minecraft/mods mods
 fi
 
-if [ -n -e libraries ];
+if [ ! -e libraries ]; then
   ln -s /opt/minecraft/libraries libraries
 fi
 
-if [ -n -e scripts ];
+if [ ! -e scripts ]; then
   ln -s /opt/minecraft/scripts scripts
 fi
 
-if [ -n -e eula.txt ];
-  cp data/eula.txt .
+if [ ! -e eula.txt ]; then
+  cp /opt/minecraft/eula.txt .
 fi
 
 java -server -Xmx${SERVER_MAXHEAP} -Xms${SERVER_MINHEAP} -XX:+UseG1GC -jar ../forge*.jar ${SERVER_OPTS}
